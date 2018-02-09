@@ -6,6 +6,7 @@ from rest_framework.status import HTTP_404_NOT_FOUND
 import requests
 
 def home(request):
+    print("http://localhost:8000" + reverse("get_post_people"))
     r = requests.get("http://localhost:8000" + reverse("get_post_people"))
     return render(request, 'web/home.html', {'people' : r.json()})
 
