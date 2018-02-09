@@ -99,3 +99,12 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+#eclipse config files
+.project
+.pydevproject
+
+#Django project private key module
+secret.py
+/db.sqlite3
+
