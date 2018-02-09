@@ -107,4 +107,4 @@ ENV/
 #Django project private key module
 secret.py
 /db.sqlite3
-
+*/migrations/
