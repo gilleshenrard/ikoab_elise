@@ -20,11 +20,13 @@ class PersonTest(TestCase):
         self.assertEqual(str(person_jane), "Jane")
         
     def test_invalid_person_firstname(self):
+        #See .test_views.CreateNewPersonTest.test_create_invalid_person_firstname
 #        with self.assertRaises(ValidationError):
 #            Person.objects.create(firstname='!!!')
         pass
             
     def test_invalid_person_email(self):
+        #see .test_views.CreateNewPersonTest.test_create_invalid_person_email
 #        with self.assertRaises(ValidationError):
 #            Person.objects.create(email='abcde')
         pass
