@@ -26,7 +26,7 @@
 	<div class="row">
 		<div class="col-lg-7 col-md-7 col-sm-12">
 			<div class="card bg-faded">
-				<form method="POST" action="{% url 'badge' FN_search %}" enctype="multipart/form-data">
+				<form method="POST" action="{% url 'badge' FN_search %}" enctype="multipart/form-data" id="badge_form">
 					{% include 'web/form.html' %}
 					<button type="submit" class="btn btn-info" id="btn_submit">Submit</button>
 					<a href="{% url 'home' %}" class="btn btn-danger">Cancel</a>

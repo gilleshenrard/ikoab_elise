@@ -21,6 +21,34 @@ function checkValues(regex, id){
     }
 }
 
+/**
+ * Makes an Ajax call through a POST message
+ */
+function update_person(){
+	$.ajax({
+		url : $("#id_firstname").val(),
+		type : "POST",
+		data : { firstname : $("#id_firstname").val(),
+				lastname : $("#id_lastname").val(),
+				country : $("#id_country").val(),
+				email : $("#id_email").val(),
+				phone : $("#id_phone").val(),
+				occupation_field : $("#id_occupation_field").val(),
+				occupation : $("#id_occupation").val(),
+				birthdate : $("#id_birthdate").val(),
+				description : $("#id_description").val()},
+		
+		success : function(json) {
+			console.log("SUCCESS! " + $("#id_firstname").val() + " updated!")
+		},
+		
+		error : function(xhr, errmsg, err) {
+			console.log("Oops! We have encountered an error: "+errmsg);
+			console.log(xhr.status + ": " + xhr.responseText);
+		}
+	});
+}
+
 $(document).ready(function(){
     /**
      * Valide la valeur du numéro de chassis
@@ -28,5 +56,14 @@ $(document).ready(function(){
      */
     $("#id_firstname").focusout(function(){
         checkValues(/^[A-z -]{0,32}$/, "firstname");
+    });
+    
+    /**
+     * Impedes the default submission to replace it with Ajax
+     */
+    $("#badge_form").on('submit', function(event){
+    	event.preventDefault();
+    	console.log("Form submitted");
+    	update_person();
     });
 });
