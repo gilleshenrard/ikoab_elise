@@ -27,7 +27,7 @@ function checkValues(regex, id){
 function update_person(){
 	$.ajax({
 		url : $("#id_firstname").val(),
-		type : "POST",
+		type : "PUT",
 		data : { firstname : $("#id_firstname").val(),
 				lastname : $("#id_lastname").val(),
 				country : $("#id_country").val(),
