@@ -1,6 +1,5 @@
 from django.test import TestCase
 from ..models import Person
-from django.core.exceptions import ValidationError
 
 
 class PersonTest(TestCase):
