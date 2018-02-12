@@ -5,11 +5,34 @@ from django.core.urlresolvers import reverse, NoReverseMatch
 from ..models import Person
 from ..serializers import PersonSerializer
 
-
 # initialize the APIClient app
 client = Client()
 
-class GetAllPuppiesTest(TestCase):
+class MethodsTest(TestCase):
+    """Test module for request methods on API"""
+
+    def setUp(self):
+        self.jane = Person.objects.create(
+            firstname='Jane', lastname='Dean', country='US', email='test2@test.com', phone='+1123456789', occupation_field='Administration', occupation='Accountance', birthdate='1982-05-01', description='Smart girl')
+        Person.objects.create(
+            firstname='John', lastname='Doe', country='UK', email='test@test.com', phone='+44123456789', occupation_field='Diplomacy', occupation='Spy', birthdate='1963-05-01', description='Tall guy')
+        
+    def test_invalid_methods(self):
+        #send delete on get_post_people
+        response = client.delete(reverse('get_post_people'))
+        self.assertEqual(response, status.HTTP_405_METHOD_NOT_ALLOWED)
+        
+        #send put on get_post_people
+        response = client.put(reverse('get_post_people'))
+        self.assertEqual(response, status.HTTP_405_METHOD_NOT_ALLOWED)
+        
+        #send post on get_delete_update_person
+        response = client.post(reverse('get_delete_update_person', kwargs={'fstname': self.jane.firstname}))
+        self.assertEqual(response, status.HTTP_405_METHOD_NOT_ALLOWED)
+        
+        
+
+class GetAllPeopleTest(TestCase):
     """ Test module for GET all people API """
 
     def setUp(self):
