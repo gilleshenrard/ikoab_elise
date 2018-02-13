@@ -17,4 +17,4 @@ def badge(request, FN_search):
         form = PersonForm(request.POST or None, request.FILES)
         if form.is_valid():
             r = put("http://localhost:8000" + reverse("get_delete_update_person", kwargs={'fstname' : FN_search}), data=request.POST)
-            return render(request, 'web/badge.html', {'form':form, 'FN_search':FN_search,})
+        return render(request, 'web/badge.html', {'form':form, 'FN_search':FN_search,})
