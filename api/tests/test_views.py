@@ -80,9 +80,13 @@ class GetSinglepersonTest(TestCase):
             reverse('get_delete_update_person', kwargs={'fstname': 'test'}))
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
     
-    def test_get_invalid_single_person_url(self):
+    def test_get_invalid_single_person_url_type(self):
         with self.assertRaises(NoReverseMatch):
             client.get(reverse('get_delete_update_person', kwargs={'fstname': 30}))
+    
+    def test_get_invalid_single_person_url_length(self):
+        with self.assertRaises(NoReverseMatch):
+            client.get(reverse('get_delete_update_person', kwargs={'fstname': "abcdefghijklmnopqrstuvwxyzabcdefg"}))
 
 class CreateNewPersonTest(TestCase):
     """ Test module for inserting a new person """

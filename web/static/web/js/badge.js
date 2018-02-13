@@ -55,7 +55,7 @@ $(document).ready(function(){
      * Structure : 12345-12345-12345-12345
      */
     $("#id_firstname").focusout(function(){
-        checkValues(/^[A-z -]{0,32}$/, "firstname");
+        checkValues(/^[A-z-]{1,32}$/, "firstname");
     });
     
     /**
