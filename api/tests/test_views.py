@@ -20,15 +20,15 @@ class MethodsTest(TestCase):
     def test_invalid_methods(self):
         #send delete on get_post_people
         response = client.delete(reverse('get_post_people'))
-        self.assertEqual(response, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
         
         #send put on get_post_people
         response = client.put(reverse('get_post_people'))
-        self.assertEqual(response, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
         
         #send post on get_delete_update_person
         response = client.post(reverse('get_delete_update_person', kwargs={'fstname': self.jane.firstname}))
-        self.assertEqual(response, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
         
         
 
