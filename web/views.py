@@ -4,13 +4,13 @@ from django.core.urlresolvers import reverse
 from requests import get, put
 
 def home(request):
-        r = get("http://localhost:8000" + reverse("get_post_people"))
-        return render(request, 'web/home.html', {'people' : r.json()})
+    r = get("http://localhost:8000" + reverse("get_post_people"))
+    return render(request, 'web/home.html', {'people' : r.json()})
 
 def badge(request, FN_search):
     if request.method == "GET":
-        r = get("http://localhost:8000" + reverse("get_post_people"), data={'fstname' : FN_search})
-        form = PersonForm(r.json()[0])
+        r = get("http://localhost:8000" + reverse("get_delete_update_person", kwargs={'fstname' : FN_search}))
+        form = PersonForm(r.json())
         return render(request, 'web/badge.html', {'form':form, 'FN_search':FN_search,})
     
     elif request.method == "POST":
