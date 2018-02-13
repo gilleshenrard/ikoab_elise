@@ -2,9 +2,9 @@ from django.shortcuts import render
 from web.forms import PersonForm
 from django.core.urlresolvers import reverse
 from requests import get, put
+from rest_framework import status
 
 def home(request):
-    if request.method == 'GET' :
         r = get("http://localhost:8000" + reverse("get_post_people"))
         return render(request, 'web/home.html', {'people' : r.json()})
 
