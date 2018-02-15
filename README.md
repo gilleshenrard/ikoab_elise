@@ -74,6 +74,8 @@ It contains :
 #### 3.1.2- web
 This is the website itself. It renders pages depending on the user's actions.
 
+Both pages are rendered with the help of html pages under templates/ and web/templates/, and use a base of Ajax for asynchronous communication with the server.
+
 It doesn't contain any low-level or DB-related treatment. It instead relies on the api to handle it.
 
 It consists of two pages :
