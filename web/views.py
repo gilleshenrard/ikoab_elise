@@ -25,9 +25,9 @@ def badge(request, FN_search):
         form = PersonForm(request.POST or None, request.FILES)
         if form.is_valid():
             r = put("http://localhost:8000" + reverse("get_delete_update_person", kwargs={'fstname' : FN_search}), data=request.POST)
-            if r == status.HTTP_404_NOT_FOUND:
+            if r.status_code == status.HTTP_404_NOT_FOUND:
                 return HttpResponseNotFound("The badge for " + FN_search + " could not be found.")
-            elif r == status.HTTP_400_BAD_REQUEST:
+            elif r.status_code == status.HTTP_400_BAD_REQUEST:
                 return HttpResponseBadRequest("Something went wrong")
 
         return render(request, 'web/badge.html', {'form':form, 'FN_search':FN_search,})
