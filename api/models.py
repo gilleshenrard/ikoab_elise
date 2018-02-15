@@ -3,7 +3,7 @@ from django.core.validators import RegexValidator, validate_email
 
 class Person(models.Model):
     firstname = models.CharField(max_length=32, verbose_name="First Name", name="firstname", blank=False, null=False,
-                                 validators=[RegexValidator(regex='^[A-z-]{1,32}$', message='First name must only contain letters (without accents), spaces and hyphens')])
+                                 validators=[RegexValidator(regex='^[A-z-]{1,32}$', message='First name must only contain letters (without accents) and hyphens')])
     lastname = models.CharField(max_length=32, verbose_name="Last Name", name="lastname", blank=True, null=True)
     country = models.CharField(max_length=32, verbose_name="Country of origin", name="country", blank=True, null=True)
     email = models.CharField(max_length=64, verbose_name="Email", name="email", blank=True, null=True,
