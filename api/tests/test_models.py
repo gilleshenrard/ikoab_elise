@@ -17,7 +17,6 @@ class PersonTest(TestCase):
         self.john.person.description='Tall guy'
         self.john.save()
         
-        
         self.jane = User.objects.create_user('jane', 'test2@test.com', 'test', first_name = 'Jane', last_name = 'Dean')
         self.jane.person.country='US'
         self.jane.person.phone='+1123456789'

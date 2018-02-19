@@ -3,23 +3,26 @@ from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Person
+from django.contrib.auth.models import User
 from .serializers import PersonSerializer
 
 
 @api_view(['GET', 'DELETE', 'PUT'])
 def get_delete_update_person(request, fstname):
-    person = get_object_or_404(Person, firstname=fstname)
+    user = get_object_or_404(User, first_name=fstname)
 
     # get details of a single person
     if request.method == 'GET':
+        person = get_object_or_404(Person, user=user)
         serializer = PersonSerializer(person)
         return Response(serializer.data)
     # delete a single person
     elif request.method == 'DELETE':
-        person.delete()
+        user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     # update details of a single person
     elif request.method == 'PUT':
+        person = get_object_or_404(Person, user=user)
         serializer = PersonSerializer(person, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -37,6 +40,8 @@ def get_post_people(request):
     # insert a new record for a person
     elif request.method == 'POST':
         data = {
+            'username': request.data.get('username'),
+            'password': request.data.get('password'),
             'firstname': request.data.get('firstname'),
             'lastname': request.data.get('lastname'),
             'country': request.data.get('country'),
